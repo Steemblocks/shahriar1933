@@ -1,6 +1,134 @@
-// Theme toggle and scroll reveal (non-hallucinated, local-only behavior)
+// Portfolio Interactive Features
 (function(){
-  // Scroll reveal using IntersectionObserver; stagger by index
+  'use strict';
+  
+  // ============================================
+  // MOBILE MENU FUNCTIONALITY
+  // ============================================
+  const hamburger = document.getElementById('hamburger');
+  const mainNav = document.getElementById('mainNav');
+  const navClose = document.getElementById('navClose');
+  const overlay = document.querySelector('.mobile-menu-overlay');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const body = document.body;
+  
+  // Debug log
+  console.log('Menu initialized:', {
+    hamburger: !!hamburger,
+    mainNav: !!mainNav,
+    navClose: !!navClose,
+    overlay: !!overlay,
+    navLinksCount: navLinks.length
+  });
+  
+  // Toggle menu function
+  function toggleMenu() {
+    console.log('Toggle menu called');
+    const isActive = hamburger.classList.toggle('active');
+    mainNav.classList.toggle('active');
+    overlay.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
+    console.log('Menu active:', isActive);
+    
+    // Prevent body scroll when menu is open
+    body.style.overflow = isActive ? 'hidden' : '';
+  }
+  
+  // Close menu function
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    mainNav.classList.remove('active');
+    overlay.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    body.style.overflow = '';
+  }
+  
+  // Hamburger button click
+  if (hamburger) {
+    hamburger.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleMenu();
+    });
+  }
+  
+  // Close button click
+  if (navClose) {
+    navClose.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMenu();
+    });
+  }
+  
+  // Overlay click - close menu
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+  
+  // Nav link clicks - close menu and smooth scroll
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      closeMenu();
+      
+      // Smooth scroll to section
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          setTimeout(() => {
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 300);
+        }
+      }
+    });
+  });
+  
+  // Close menu on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+  
+  // Close menu on window resize (if going back to desktop)
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (window.innerWidth > 768 && mainNav.classList.contains('active')) {
+        closeMenu();
+      }
+    }, 250);
+  });
+  
+  // ============================================
+  // SCROLL TO TOP BUTTON
+  // ============================================
+  const scrollToTopBtn = document.querySelector('.scroll-to-top');
+  
+  if (scrollToTopBtn) {
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+  
+  // ============================================
+  // SCROLL REVEAL ANIMATION FOR CARDS
+  // ============================================
   const cards = Array.from(document.querySelectorAll('.projects .grid .card'));
 
   const DEBUG = true; // set to false to disable logs
