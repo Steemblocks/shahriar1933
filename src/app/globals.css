@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Shahriar Portfolio - Design System
+   ========================================================================== */
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --bg-dark: #050508;
+  --bg-deep: #0a0a12;
+  --bg-card: rgba(255, 255, 255, 0.02);
+
+  --primary: #00e5ff;
+  --primary-glow: rgba(0, 229, 255, 0.15);
+  --secondary: #8b5cf6;
+  --secondary-glow: rgba(139, 92, 246, 0.15);
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Spacing */
+  --container-max: 1200px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ambient background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 40%, var(--secondary-glow), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 20%, var(--primary-glow), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Grid background for hero */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glass card effect */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* Featured card */
+.featured-card {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(139, 92, 246, 0.06));
+  border-color: rgba(0, 229, 255, 0.12);
+}
+
+.featured-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 40px var(--primary-glow);
+}
+
+/* Contribution card */
+.contribution-card {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(139, 92, 246, 0.05));
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+.contribution-card:hover {
+  border-color: var(--success);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background: var(--primary);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 90;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+/* Animations */
+
+
+
+
+/* Stagger animations for cards */
+
+
+/* Mobile menu overlay */
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
