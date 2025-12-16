@@ -68,7 +68,7 @@ export default function Header() {
       />
 
       <header
-        className={`fixed top-2 sm:top-4 left-0 right-0 z-50 px-3 sm:px-4 transition-transform duration-500 ${
+        className={`fixed top-2 sm:top-4 left-0 right-0 z-50 px-3 sm:px-4 transition-transform duration-500 will-change-transform ${
           isVisible ? "translate-y-0" : "-translate-y-[150%]"
         }`}
       >
