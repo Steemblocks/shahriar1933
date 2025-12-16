@@ -24,8 +24,8 @@ function FloatingElement({
   const rotateRange = useTransform(scrollY, [0, 5000], [rotate, rotate + 45]);
 
   // Smooth out the motion
-  const smoothY = useSpring(yRange, { stiffness: 400, damping: 90 });
-  const smoothRotate = useSpring(rotateRange, { stiffness: 400, damping: 90 });
+  const smoothY = useSpring(yRange, { stiffness: 100, damping: 30 });
+  const smoothRotate = useSpring(rotateRange, { stiffness: 100, damping: 30 });
 
   return (
     <motion.div

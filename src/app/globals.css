@@ -49,6 +49,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Ambient background */
