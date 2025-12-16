@@ -110,6 +110,45 @@ body::before {
   border-color: var(--glass-border-hover);
 }
 
+/* Glass Shine Effect */
+@keyframes glass-shine {
+  0% {
+    transform: translateX(-100%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-25deg);
+  }
+}
+
+.glass-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent
+  );
+  transform: translateX(-100%) skewX(-25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.glass-shine:hover::after {
+  animation: glass-shine 0.75s ease-in-out;
+}
+
 /* Featured card */
 .featured-card {
   background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(139, 92, 246, 0.06));
@@ -164,17 +203,6 @@ body::before {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px var(--primary-glow);
 }
-
-/* Animations */
-
-
-
-
-/* Stagger animations for cards */
-
-
-/* Mobile menu overlay */
-
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
