@@ -25,6 +25,8 @@ export default function Header() {
       lastScrollYRef.current = currentScrollY;
     };
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -209,6 +211,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                suppressHydrationWarning
               >
                 <svg
                   className="w-5 h-5"
@@ -221,6 +224,7 @@ export default function Header() {
               <a
                 href="mailto:steemblocks@gmail.com"
                 className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                suppressHydrationWarning
               >
                 <svg
                   className="w-5 h-5"
@@ -241,6 +245,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-[var(--text-muted)] hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 transition-all duration-300"
+                suppressHydrationWarning
               >
                 <svg
                   className="w-5 h-5"

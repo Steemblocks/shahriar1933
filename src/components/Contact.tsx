@@ -72,6 +72,7 @@ export default function Contact() {
                   target={contact.external ? "_blank" : undefined}
                   rel={contact.external ? "noopener noreferrer" : undefined}
                   className="text-sm sm:text-base font-medium text-white hover:text-[var(--primary)] transition-colors duration-200"
+                  suppressHydrationWarning
                 >
                   {contact.value}
                 </Link>

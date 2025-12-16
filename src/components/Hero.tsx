@@ -78,12 +78,14 @@ export default function Hero() {
             <Link
               href="#projects"
               className="group min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full bg-white text-[var(--bg-dark)] transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--primary)] hover:to-[var(--secondary)] hover:text-white hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--primary-glow)] relative overflow-hidden"
+              suppressHydrationWarning
             >
               <span className="relative z-10">Explore My Work</span>
             </Link>
             <Link
               href="#contact"
               className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full border border-[var(--glass-border)] text-white transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:-translate-y-1 hover:bg-white/[0.03]"
+              suppressHydrationWarning
             >
               Contact Me
             </Link>
