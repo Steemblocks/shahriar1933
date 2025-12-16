@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Star, GitPullRequest, CircleCheck, ExternalLink } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import { motion } from "framer-motion";
 
 interface Project {
     title: string;
@@ -23,13 +24,16 @@ const projects: Project[] = [
         type: "featured",
     },
     {
-        title: "AuthSteem",
+        title: "AuthSteem — Vue 3 Migration",
         description:
-            "Signer app for Steem blockchain supporting Web and Desktop (Electron). Features secure authentication and Docker deployment support.",
+            "Contributed to the open-source AuthSteem signer app by migrating the entire codebase from Vue 2 to Vue 3, enhancing performance and maintainability.",
         links: [
-            { label: "GitHub", href: "https://github.com/Steemblocks/authsteem", primary: true },
-            { label: "Live Demo", href: "https://auth.steem.fans" },
+            { label: "View Pull Request", href: "https://github.com/steemfans/authsteem/pull/4", primary: true },
+            { label: "Visit App", href: "https://auth.steem.fans" },
         ],
+        badge: { icon: <GitPullRequest className="w-3 h-3" />, text: "Contribution", type: "contribution" },
+        stats: ["Vue 2 → Vue 3", "Refactoring", <span key="merged" className="flex items-center gap-1"><CircleCheck className="w-3 h-3" /> Merged</span>],
+        type: "contribution",
     },
     {
         title: "Steem-Burn-Pool",
@@ -38,11 +42,6 @@ const projects: Project[] = [
             { label: "Visit App", href: "https://burn.steemblocks.com/", primary: true },
             { label: "GitHub", href: "https://github.com/Steemblocks/Steem-Burn-Pool" },
         ],
-    },
-    {
-        title: "steem.com",
-        description: "Fork of steemit/steem.com — website code built with TypeScript.",
-        links: [{ label: "GitHub", href: "https://github.com/Steemblocks/steem.com", primary: true }],
     },
     {
         title: "Mobile Responsiveness Fixes — steem.com",
@@ -80,9 +79,9 @@ const projects: Project[] = [
     },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-    const { ref, isInView } = useInView({ threshold: 0.1 });
 
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
     const cardClass =
         project.type === "featured"
             ? "featured-card"
@@ -96,11 +95,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             : "bg-[rgba(34,197,94,0.1)] text-[var(--success)] border-[rgba(34,197,94,0.2)]";
 
     return (
-        <article
-            ref={ref}
-            className={`glass-card ${cardClass} p-5 sm:p-6 flex flex-col transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                } ${project.type === "featured" ? "col-span-full" : ""}`}
-            style={{ transitionDelay: `${index * 80}ms` }}
+        <motion.article
+            className={`glass-card ${cardClass} p-5 sm:p-6 flex flex-col h-full ${project.type === "featured" ? "col-span-full" : ""}`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{
+                y: -10,
+                backgroundColor: "rgba(10, 10, 18, 0.9)",
+                borderColor: "rgba(255, 255, 255, 0.2)",
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+            }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 }}
+            style={{ transition: "border-color 0.3s ease, background-color 0.3s ease" }} // Allow CSS to handle colors if needed, but FM handles transform
         >
             {project.badge && (
                 <span
@@ -149,7 +156,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     </Link>
                 ))}
             </div>
-        </article>
+        </motion.article>
     );
 }
 

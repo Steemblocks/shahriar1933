@@ -1,37 +1,141 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { Hand } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 export default function Hero() {
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] },
+        },
+    };
+
+    const imageVariants: Variants = {
+        hidden: { opacity: 0, scale: 0.9, rotate: -5 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            transition: { duration: 1, ease: [0.2, 0.65, 0.3, 0.9], delay: 0.2 },
+        },
+    };
+
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+        <section className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-40 pb-20 overflow-hidden">
             {/* Grid background */}
             <div className="hero-grid" />
 
-            <div className="relative z-10 text-center w-full max-w-[1400px] mx-auto">
-                <h1 className="font-[family-name:var(--font-outfit)] font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-tight tracking-tight">
-                    Hi, I&apos;m <span className="text-gradient">Shahriar</span> <Hand className="inline-block w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ml-3 text-[var(--primary)] animate-pulse" />
-                </h1>
-
-                <p className="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] w-full max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4">
-                    Full-Stack Developer • Prompt Engineer • Blockchain Specialist
-                    <br className="mt-4" />
-                    Building innovative AI-powered applications and contributing to the Steem blockchain ecosystem.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                    <Link
-                        href="#projects"
-                        className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full bg-white text-[var(--bg-dark)] transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--primary)] hover:to-[var(--secondary)] hover:text-white hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--primary-glow)]"
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center justify-items-center">
+                <motion.div
+                    className="text-center md:text-left order-2 md:order-1 will-change-transform pr-0 md:pr-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.h1
+                        variants={itemVariants}
+                        className="font-[family-name:var(--font-outfit)] font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-tight tracking-tight shadow-[0_0_80px_rgba(255,255,255,0.1)]"
                     >
-                        Explore My Work
-                    </Link>
-                    <Link
-                        href="#contact"
-                        className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full border border-[var(--glass-border)] text-white transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:-translate-y-1 hover:bg-white/[0.03]"
+                        Hi, I&apos;m <span className="text-gradient drop-shadow-[0_0_30px_rgba(49,120,198,0.4)]">Shahriar</span> <Hand className="inline-block w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 ml-3 text-[var(--primary)] animate-pulse drop-shadow-[0_0_15px_rgba(49,120,198,0.8)]" />
+                    </motion.h1>
+
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto md:mx-0"
                     >
-                        Contact Me
-                    </Link>
-                </div>
+                        Full-Stack Developer • Prompt Engineer • Web Developer • Blockchain Specialist
+                        <br className="mt-4" />
+                        Building innovative AI-powered applications and contributing to the Steem blockchain ecosystem.
+                    </motion.p>
+
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start items-center"
+                    >
+                        <Link
+                            href="#projects"
+                            className="group min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full bg-white text-[var(--bg-dark)] transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--primary)] hover:to-[var(--secondary)] hover:text-white hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--primary-glow)] relative overflow-hidden"
+                        >
+                            <span className="relative z-10">Explore My Work</span>
+                        </Link>
+                        <Link
+                            href="#contact"
+                            className="min-w-[180px] inline-flex items-center justify-center gap-2 px-8 py-4 font-[family-name:var(--font-outfit)] font-semibold text-base sm:text-lg rounded-full border border-[var(--glass-border)] text-white transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)] hover:-translate-y-1 hover:bg-white/[0.03]"
+                        >
+                            Contact Me
+                        </Link>
+                    </motion.div>
+                </motion.div>
+
+                {/* Profile Image Column */}
+                <motion.div
+                    className="flex justify-center items-center order-1 md:order-2 will-change-transform perspective-1000"
+                    variants={imageVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-[340px] lg:h-[340px] rounded-full overflow-hidden border-4 border-white/20 shadow-2xl group flex items-center justify-center bg-[#d13c36]">
+                        <Image
+                            src="/profile.jpeg"
+                            alt="Shahriar"
+                            fill
+                            className="object-contain rounded-full will-change-transform relative z-10"
+                            priority
+                            sizes="(max-width: 768px) 256px, (max-width: 1024px) 288px, 340px"
+                        />
+
+                        {/* Floating Tech Bubbles */}
+                        <>
+                            {[
+                                { name: "React", color: "#61DAFB", icon: <g fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="2.5" /><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(0 12 12)" /><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)" /><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(120 12 12)" /></g>, p: "top-4 left-4" },
+                                { name: "Next.js", color: "#ffffff", icon: <path d="M12 2C6.5 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 14h-1.5l-3-4v4H10V8h1.5l3 4V8H16v8z" />, p: "top-12 right-8" },
+                                { name: "TypeScript", color: "#3178C6", icon: <path d="M3.7 3.7h16.6v16.6H3.7zM14 15h1.5v-3.5h1.2v-1.2h-3.9v1.2h1.2zm-2.8 0h1.5v-1.1c0-.4 0-.7-.3-.8-.3-.2-.7-.1-.9.1v-1.2c.5-.3 1.2-.4 1.8-.1.8.3 1.1 1 1.7v2.9h-1.5v-.5c-.3.4-.8.6-1.3.6-.9 0-1.5-.6-1.5-1.5 0-1 .7-1.5 1.8-1.5h1.4v-.2c0-.4-.2-.6-.7-.6-.4 0-.8.1-1.2.3v1.1z" />, p: "bottom-16 left-6" },
+                                { name: "Node.js", color: "#339933", icon: <path d="M12 2l9 5v10l-9 5-9-5V7z" />, p: "bottom-8 right-12" },
+                                { name: "Tailwind", color: "#38B2AC", icon: <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />, p: "top-1/2 -right-4" },
+                                { name: "Python", color: "#3776AB", icon: <path d="M12 2c-5.5 0-6 2.5-6 2.5v2.5h2.5V5s0-1 1.5-1 1.5.5 1.5 1.5v1h-3c-3 0-4.5 1.5-4.5 4s1.5 4 4.5 4h1.5v-1.5s0-1.5 1.5-1.5 1.5 0 1.5 1.5v1.5h1.5c3 0 4.5-1.5 4.5-4s-1.5-4-4.5-4h-2.5V5c0-3-.5-3-4.5-3z" />, p: "bottom-[20%] -left-2" }
+                            ].map((tech, i) => (
+                                <motion.div
+                                    key={tech.name}
+                                    className={`absolute ${tech.p} z-0 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 shadow-lg`}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{
+                                        opacity: [0.5, 1, 0.5],
+                                        scale: [1, 1.1, 1],
+                                        y: [0, -15, 0],
+                                        rotate: [0, 10, -10, 0]
+                                    }}
+                                    transition={{
+                                        duration: 4 + i,
+                                        repeat: Infinity,
+                                        repeatType: "mirror",
+                                        ease: "easeInOut",
+                                        delay: i * 0.5
+                                    }}
+                                >
+                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: tech.color }}>
+                                        {tech.icon}
+                                    </svg>
+                                </motion.div>
+                            ))}
+                        </>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

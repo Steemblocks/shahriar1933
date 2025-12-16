@@ -1,11 +1,9 @@
 "use client";
 
-import { useInView } from "@/hooks/useInView";
+import { motion, Variants } from "framer-motion";
 import { Bot, Code2, Terminal, Cpu, Search, Bug, Zap, GitPullRequest, Wrench, Layers, TestTube, Gauge, FileText, ShieldCheck, MessageSquareCode } from "lucide-react";
 
 export default function Skills() {
-    const { ref, isInView } = useInView({ threshold: 0.2 });
-
     const aiTools = [
         { name: "Antigravity", role: "Advanced Agentic Coding", icon: <Bot className="w-6 h-6 text-blue-400" /> },
         { name: "Cursor", role: "AI-First Code Editor", icon: <Terminal className="w-6 h-6 text-white" /> },
@@ -49,21 +47,41 @@ export default function Skills() {
             icon: <Gauge className="w-6 h-6 text-cyan-400" />,
         },
         {
-            title: "Documentation",
-            description: "Auto-generating technical documentation and strengthening type safety definitions.",
-            icon: <FileText className="w-6 h-6 text-gray-300" />,
-        },
-        {
             title: "Security Hardening",
             description: "Proactively identifying vulnerabilities and implementing security best practices.",
             icon: <ShieldCheck className="w-6 h-6 text-red-500" />,
         },
     ];
 
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+        },
+    };
+
     return (
         <section id="skills" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
-                <div ref={ref} className={`transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <h2 className="font-[family-name:var(--font-outfit)] font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-16">
                         AI-Powered <span className="text-gradient">Workflow</span>
                     </h2>
@@ -75,9 +93,20 @@ export default function Skills() {
                                 <Bot className="w-6 h-6 text-[var(--primary)]" />
                                 AI Agents
                             </h3>
-                            <div className="space-y-4">
+                            <motion.div
+                                className="space-y-4"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
                                 {aiTools.map((tool) => (
-                                    <div key={tool.name} className="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-[var(--primary)]/30 transition-colors">
+                                    <motion.div
+                                        key={tool.name}
+                                        variants={itemVariants}
+                                        className="glass-card p-4 rounded-xl flex items-center gap-4 hover:border-[var(--primary)]/30 transition-colors"
+                                        whileHover={{ x: 5, backgroundColor: "rgba(255, 255, 255, 0.05)", transition: { type: "spring", stiffness: 300 } }}
+                                    >
                                         <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
                                             {tool.icon}
                                         </div>
@@ -85,9 +114,9 @@ export default function Skills() {
                                             <div className="font-bold text-lg text-white">{tool.name}</div>
                                             <div className="text-sm text-[var(--text-secondary)]">{tool.role}</div>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Capabilities Grid */}
@@ -96,22 +125,33 @@ export default function Skills() {
                                 <GitPullRequest className="w-6 h-6 text-[var(--secondary)]" />
                                 Engineering Capabilities
                             </h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <motion.div
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
                                 {workflows.map((item) => (
-                                    <div key={item.title} className="glass-card p-6 rounded-xl hover:bg-white/[0.03] transition-colors group">
-                                        <div className="mb-4 w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <motion.div
+                                        key={item.title}
+                                        variants={itemVariants}
+                                        className="glass-card p-6 rounded-xl hover:bg-white/[0.03] transition-colors group"
+                                        whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
+                                    >
+                                        <div className="mb-4 w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             {item.icon}
                                         </div>
                                         <h4 className="font-bold text-lg text-white mb-2">{item.title}</h4>
                                         <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                                             {item.description}
                                         </p>
-                                    </div>
+                                    </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
