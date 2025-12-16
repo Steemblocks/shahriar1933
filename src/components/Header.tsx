@@ -68,8 +68,9 @@ export default function Header() {
                 >
                     {/* Brand */}
                     <Link
-                        href="#"
+                        href="/"
                         className="font-[family-name:var(--font-outfit)] font-bold text-lg sm:text-xl tracking-tight z-50 relative"
+                        suppressHydrationWarning
                     >
                         <span className="text-gradient">Shahriar</span>
                     </Link>
@@ -81,6 +82,7 @@ export default function Header() {
                                 key={link.href}
                                 href={link.href}
                                 className="text-[var(--text-muted)] hover:text-white text-sm font-medium relative py-1 transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-[var(--primary)] after:to-[var(--secondary)] after:rounded-sm after:transition-all after:duration-300 hover:after:w-full"
+                                suppressHydrationWarning
                             >
                                 {link.label}
                             </Link>
@@ -150,6 +152,7 @@ export default function Header() {
                                     style={{
                                         transitionDelay: isMenuOpen ? `${150 + index * 75}ms` : "0ms"
                                     }}
+                                    suppressHydrationWarning
                                 >
                                     <span className="text-2xl">{link.icon}</span>
                                     <span className="font-[family-name:var(--font-outfit)] text-xl font-semibold text-white group-hover:text-[var(--primary)] transition-colors">

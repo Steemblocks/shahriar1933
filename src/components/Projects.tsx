@@ -151,6 +151,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         rel="noopener noreferrer"
                         className={`text-xs sm:text-sm font-semibold transition-colors duration-200 hover:underline hover:underline-offset-4 ${link.primary ? "text-[var(--primary)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                             }`}
+                        suppressHydrationWarning
                     >
                         {link.label} <ExternalLink className="w-3 h-3 inline ml-0.5" />
                     </Link>
