@@ -68,9 +68,12 @@ const projects: Project[] = [
         links: [{ label: "GitHub", href: "https://github.com/Steemblocks/Steem-MissedBlocks-Telegram-Bot", primary: true }],
     },
     {
-        title: "steem-pricefeed-docker",
-        description: "Price feed publisher for Steem witnesses with Docker setup.",
-        links: [{ label: "GitHub", href: "https://github.com/Steemblocks/steem-pricefeed-docker", primary: true }],
+        title: "SteemStats",
+        description: "A Multifunctional Steem Discord Bot.",
+        links: [
+            { label: "GitHub", href: "https://github.com/Steemblocks/SteemStats-sample", primary: true },
+            { label: "Invite Bot", href: "https://discord.com/oauth2/authorize?client_id=1276922336842612777" },
+        ],
     },
     {
         title: "SteemBlocks (Original)",
