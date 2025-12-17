@@ -14,7 +14,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Shahriar — Full-Stack Developer & Blockchain Specialist",
+  title: "Shahriar",
   description:
     "Full-stack developer specializing in blockchain technology, Steem ecosystem, and modern web applications. Open source contributor and blockchain innovator.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Shahriar" }],
   openGraph: {
     type: "website",
-    title: "Shahriar — Full-Stack Developer & Blockchain Specialist",
+    title: "Shahriar",
     description:
       "Building innovative web applications and contributing to the Steem blockchain ecosystem.",
     siteName: "Shahriar Portfolio",
