@@ -67,7 +67,7 @@ export default function Hero() {
             Full-Stack Developer • Prompt Engineer • Web Developer • Blockchain
             Specialist
             <br className="mt-4" />
-            Building innovative AI-powered applications and contributing to the
+            Using AI-assisted workflows to build faster, smarter applications and contributing to the
             Steem blockchain ecosystem.
           </motion.p>
 
