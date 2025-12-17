@@ -134,23 +134,23 @@ export default function About() {
                   <span className="text-white font-medium">
                     Prompt Engineer
                   </span>{" "}
-                  specializing in modern web applications and blockchain
+                  specialising in modern web applications and blockchain
                   technology. With deep expertise in TypeScript, React, Next,
-                  Tauri, Electron, Tailwind, etc and Steem blockchain
+                  Tauri, Electron, Tailwind, Rust, etc and the Steem blockchain
                   development, I can also create innovative solutions that
-                  bridge traditional web development with decentralized
+                  bridge traditional web development with decentralised
                   technologies and AI-driven workflows.
                 </p>
                 <p>
                   Currently focused on building tools and applications for the
-                  Steem ecosystem, I contribute to open-source projects and
+                  Steem ecosystem, I contribute to open-source projects, refactoring, and
                   develop blockchain explorers, analytical dashboards, and
                   developer tools that enhance the blockchain experience for
                   everyone.
                 </p>
                 <p>
                   Beyond coding, I am an active community member, constantly
-                  learning and sharing knowledge to help grow the decentralized
+                  learning and sharing knowledge to help grow the decentralised
                   web.
                 </p>
               </div>
